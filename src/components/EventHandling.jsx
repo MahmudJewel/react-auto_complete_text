@@ -1,8 +1,8 @@
 import { useState } from "react";
 
 const EventHandling = () =>{
-    const initial = {text:""}
-    const [values, setValues] = useState({initial})
+    const initial = {text:""};
+    const [values, setValues] = useState(initial);
     
     const changingText = (e) =>{
         const {name, value} = e.target;

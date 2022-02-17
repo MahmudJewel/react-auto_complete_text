@@ -6,14 +6,15 @@ import { useEffect } from "react";
 
 const Form = () => {
     const {changingText, values} = EventHandling();
+    const {searchCountries, loadApi, countryMatches} = ApiText();
 
     const print=()=>{
-        console.log('Status ok');
+        console.log('Status ok: ', countryMatches);
     }
 
     useEffect(()=>{
-        print();
-        <ApiText />
+        // print();
+        loadApi();
     })
 
   return (
@@ -32,8 +33,7 @@ const Form = () => {
                 type="text"
                 placeholder="Enter your text"
                 name="text"
-                value={values.text}
-                onChange={changingText}
+                onChange={(e)=>searchCountries(e.target.value)}
               />
             </div>
             </div>

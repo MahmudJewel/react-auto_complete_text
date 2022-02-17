@@ -1,16 +1,28 @@
-import { useState } from "react";
-// import axios from "axios";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 
 const ApiText =() =>{
-    // const loadApi= async ()=>{
-    //     const resp = await axios.get("https://restcountries.com/v3.1/name/united");
-    //     console.log(resp.data)
-    // }
+    const [countries, setCountries] = useState([]);
+    const [countryMatches, setCountryMatches] = useState([]);
+
+    const loadApi= async ()=>{
+        const resp = await axios.get("https://restcountries.com/v3.1/all");
+        // console.log('From api',resp.data);
+        setCountries(resp.data);
+    }
+
+    const searchCountries = (txt) =>{
+        let matches = countries.filter((country)=>{
+            const regex = new RegExp(`${txt}`, "gi");
+            return country.name.match(regex) || country.capital.match(regex);
+        });
+        setCountryMatches(matches);
+        console.log('search country: ', countryMatches);
+    }
+    
     return(
-        <div className="bg-primary">
-            Hello
-        </div>
+        {searchCountries, loadApi, countryMatches}
     );
 }
 

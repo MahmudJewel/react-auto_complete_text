@@ -1,9 +1,20 @@
 import "../assets/form.css"
 import EventHandling from "./EventHandling";
+import ApiText from "./ApiText";
 
+import { useEffect } from "react";
 
 const Form = () => {
-    const {changingText} = EventHandling();
+    const {changingText, values} = EventHandling();
+
+    const print=()=>{
+        console.log('Status ok');
+    }
+
+    useEffect(()=>{
+        print();
+        <ApiText />
+    })
 
   return (
     <div>
@@ -14,12 +25,14 @@ const Form = () => {
               <h2 className="text-success text-center">Auto Complete Text </h2>
             </div>
             <div className="card-body col-md-8 m-auto">
+            
             <div className="mb-4">
               <input
                 className="form-control text-center p-2"
                 type="text"
                 placeholder="Enter your text"
                 name="text"
+                value={values.text}
                 onChange={changingText}
               />
             </div>

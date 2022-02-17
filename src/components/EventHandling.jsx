@@ -1,11 +1,19 @@
-
+import { useState } from "react";
 
 const EventHandling = () =>{
+    const initial = {text:""}
+    const [values, setValues] = useState({initial})
+    
     const changingText = (e) =>{
-        console.log('you entered', e.target.value);
+        const {name, value} = e.target;
+        setValues({
+            ... values,
+            [name]:value,
+        })
+        // console.log('you entered', values);
     }
 
-    return {changingText};
+    return {changingText, values};
 }
 
 export default EventHandling;
